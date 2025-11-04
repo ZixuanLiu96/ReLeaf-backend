@@ -1,0 +1,34 @@
+{
+  "name": "releaf-back-end",
+  "version": "1.0.0",
+  "description": "The back-end codes of ReLeaf Project(a plant adoption app)",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZixuanLiu96/ReLeaf-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ZixuanLiu96/ReLeaf-backend/issues"
+  },
+  "homepage": "https://github.com/ZixuanLiu96/ReLeaf-backend#readme",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.20.0",
+    "mongoose": "^8.19.2",
+    "morgan": "^1.10.1",
+    "validator": "^13.15.20"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
