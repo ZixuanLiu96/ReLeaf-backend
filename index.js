@@ -4,6 +4,7 @@ const plantRouter = require("./routes/plantRoute");
 const userRouter = require("./routes/userRoute");
 const AppError = require("./utils/appError");
 const globalErrorHandler = require("./controllers/errorController");
+const adoptionRouter = require("./routes/adoptionRoute");
 
 const app = express();
 if (process.env.NODE_ENV === "development") {
@@ -14,6 +15,7 @@ app.use(express.static(`${__dirname}/public`));
 
 app.use("/api/plants", plantRouter);
 app.use("/api/users", userRouter);
+app.use("/api/adoptions", adoptionRouter);
 
 app.all(/.*/, (req, res, next) => {
   // const err = new Error(`Cant't find ${req.originalUrl} on this server!`);
