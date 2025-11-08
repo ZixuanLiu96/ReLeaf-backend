@@ -8,10 +8,15 @@ Built with Node.js, Express, and MongoDB (Mongoose), it promotes sustainable liv
 🚀 Features
 
 🪴 Browse available plants for adoption
+
 💚 User registration and authentication (JWT-based)
+
 🌱 Adopt or return plants
-📸 Upload and display plant images
+
+📸 Upload and display plant images(in the future version)
+
 📖 Plant care instructions
+
 👩‍🌾 Admin dashboard to manage users and plants
 
 | Category               | Technology              |
@@ -38,5 +43,7 @@ Built with Node.js, Express, and MongoDB (Mongoose), it promotes sustainable liv
 🧑‍💻 Developer
 
 Author: Zixuan Liu
+
 Email: liusherry08@gmail.com
+
 GitHub: @ZixuanLiu96

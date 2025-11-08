@@ -38,3 +38,21 @@ exports.createAdoptions = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.getAllAdoptions = async (req, res, next) => {
+  try {
+    const adoptions = await Adoption.find()
+      .populate("userId")
+      .populate("plantId");
+
+    res.status(200).json({
+      status: "success",
+      message: `${adoptions.length} records`,
+      data: {
+        adoptions,
+      },
+    });
+  } catch (err) {
+    next(err);
+  }
+};

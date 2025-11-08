@@ -5,6 +5,7 @@ const userRouter = require("./routes/userRoute");
 const AppError = require("./utils/appError");
 const globalErrorHandler = require("./controllers/errorController");
 const adoptionRouter = require("./routes/adoptionRoute");
+const cors = require("cors");
 
 const app = express();
 if (process.env.NODE_ENV === "development") {
@@ -12,6 +13,7 @@ if (process.env.NODE_ENV === "development") {
 }
 app.use(express.json());
 app.use(express.static(`${__dirname}/public`));
+app.use(cors({ origin: "http://localhost:5173" }));
 
 app.use("/api/plants", plantRouter);
 app.use("/api/users", userRouter);

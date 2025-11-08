@@ -2,10 +2,12 @@ const Plant = require("../models/plantModel");
 
 exports.getAllPlants = async (req, res, next) => {
   try {
-    const plants = await Plant.find();
+    const plants = await Plant.find(req.query);
+    // console.log(req.query);
+
     res.status(200).json({
       status: "success",
-      message: plants.length,
+      message: `${plants.length} records`,
       data: {
         plants,
       },
