@@ -12,22 +12,23 @@ const signToken = (id) => {
 // signup
 exports.signup = async (req, res, next) => {
   try {
-    const newUser = await User.create(req.body);
+    const { email, password } = req.body;
+    const newUser = await User.create({ email, password });
+
     const token = signToken(newUser._id);
     console.log(token);
 
     res.status(201).json({
       status: "success",
+      message: "Account successfully created!",
       token,
       data: {
         user: newUser,
       },
     });
   } catch (err) {
-    res.status(500).json({
-      status: "fail",
-      message: err,
-    });
+    console.error(err);
+    next(err);
   }
 };
 
@@ -43,11 +44,12 @@ exports.login = async (req, res, next) => {
 
     const correct = await user.correctPassword(password, user.password);
 
-    if (!user) return next(new AppError("Incorrect email or password", 401));
+    if (!correct) return next(new AppError("Incorrect email or password", 401));
 
     const token = signToken(user._id);
     res.status(200).json({
       status: "success",
+      message: "You have successfully logged in!",
       token,
     });
   } catch (err) {
