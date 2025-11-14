@@ -8,6 +8,8 @@ const userSchema = new Schema({
     type: String,
     required: false,
     sparse: true,
+    default: "user",
+    maxlength: [20, "A username shouldn't over 20 characters!"],
   },
   email: {
     type: String,
@@ -31,6 +33,11 @@ const userSchema = new Schema({
   joinAt: {
     type: Date,
     default: Date.now(),
+  },
+  profileUrrl: {
+    type: String,
+    default:
+      "https://res.cloudinary.com/dprwwp1ku/image/upload/v1763160044/profile-bg_logwlv.png",
   },
 });
 

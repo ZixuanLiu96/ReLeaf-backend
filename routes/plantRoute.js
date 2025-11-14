@@ -11,7 +11,11 @@ const { protect } = require("./../controllers/authController");
 
 const router = express.Router();
 
-router.route("/").get(protect, getAllPlants).post(createPlant);
-router.route("/:plantId").get(getPlant).patch(updatePlant).delete(deletePlant);
+router.route("/").get(protect, getAllPlants).post(protect, createPlant);
+router
+  .route("/:plantId")
+  .get(protect, getPlant)
+  .patch(protect, updatePlant)
+  .delete(protect, deletePlant);
 
 module.exports = router;

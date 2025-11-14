@@ -60,14 +60,19 @@ exports.login = async (req, res, next) => {
 // protect
 exports.protect = async (req, res, next) => {
   let token;
+  // console.log("tokenRequest", req.headers.authorization);
+
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith("Bearer")
   ) {
     token = req.headers.authorization.split(" ")[1];
+    // console.log(token);
   }
 
   if (!token) {
+    // console.log("111111111");
+
     return next(
       new AppError("You are not logged in! Please log in to get access.", 401)
     );
