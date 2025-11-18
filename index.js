@@ -13,7 +13,9 @@ if (process.env.NODE_ENV === "development") {
 }
 app.use(express.json());
 app.use(express.static(`${__dirname}/public`));
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(
+  cors({ origin: ["http://localhost:5173", "https://releaf123.netlify.app"] })
+);
 
 app.use("/api/plants", plantRouter);
 app.use("/api/users", userRouter);
