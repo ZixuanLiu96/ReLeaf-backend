@@ -12,7 +12,7 @@ dotenv.config({ path: "./.env" });
 const app = require("./index");
 
 mongoose
-  .connect(process.env.DATABASE_LOCAL)
+  .connect(process.env.DATABASE_DB || process.env.DATABASE_LOCAL)
   .then((con) => {
     console.log("DB connection successful!");
   })
