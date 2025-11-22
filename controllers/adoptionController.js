@@ -10,6 +10,7 @@ exports.createAdoptions = async (req, res, next) => {
     const { plantId, message } = req.body;
     const plant = await Plant.findById(plantId);
     if (!plant) return next(new AppError("Plant not fount!", 404));
+    console.log(plant.status);
 
     if (plant.status !== "available")
       return next(new AppError("This plant is unavailable!", 400));
@@ -22,8 +23,11 @@ exports.createAdoptions = async (req, res, next) => {
       status: "active",
     });
 
-    plant.status = "adopted";
+    plant.status = "pending";
     plant.adoptedBy = userId;
+    // setTimeout(() => {
+    //   plant.status = "adopted";
+    // }, 10000);
     plant.save();
 
     res.status(201).json({
@@ -50,6 +54,28 @@ exports.getAllAdoptions = async (req, res, next) => {
       message: `${adoptions.length} records`,
       data: {
         adoptions,
+      },
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.editAdoption = async (req, res, next) => {
+  const userId = req.user._id;
+  const { returnAt, status, plantId } = req.body;
+  try {
+    const plant = await Plant.findById(plantId);
+    const adoption = await Adoption.findByIdAndUpdate(req.params._id, req.body);
+
+    plant.status = "pending";
+    plant.save();
+
+    res.status(200).json({
+      status: "success",
+      data: {
+        adoption,
+        plant,
       },
     });
   } catch (err) {
