@@ -25,6 +25,7 @@ const adoptionSchema = new Schema({
     default: "active",
   },
   message: String,
+  reason: String,
 });
 
 const Adoption = mongoose.model("Adoption", adoptionSchema);
