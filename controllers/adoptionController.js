@@ -66,7 +66,10 @@ exports.editAdoption = async (req, res, next) => {
   const { returnAt, status, plantId } = req.body;
   try {
     const plant = await Plant.findById(plantId);
-    const adoption = await Adoption.findByIdAndUpdate(req.params._id, req.body);
+    const adoption = await Adoption.findByIdAndUpdate(req.params._id, {
+      returnAt: Date.now(),
+      status: "returned",
+    });
 
     plant.status = "pending";
     plant.save();
