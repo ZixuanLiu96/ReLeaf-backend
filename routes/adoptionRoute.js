@@ -8,7 +8,7 @@ const {
 const router = express.Router();
 
 router.post("/", protect, createAdoptions);
-router.get("/:adoptionId", protect, getAllAdoptions);
+router.get("/", protect, getAllAdoptions);
 router.patch("/:adoptionId", protect);
 
 module.exports = router;
