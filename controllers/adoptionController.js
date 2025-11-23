@@ -64,11 +64,17 @@ exports.getAllAdoptions = async (req, res, next) => {
 exports.editAdoption = async (req, res, next) => {
   const userId = req.user._id;
   try {
-    const { plantId, reason } = req.body;
+    const { plantId, reason, adoption } = req.body;
     const plant = await Plant.findById(plantId);
-    const adoption = await Adoption.findByIdAndUpdate(
+
+    if (!plant) return next(new AppError("Plant not fount!", 404));
+    console.log(plant.status);
+
+    if (plant.status !== "available")
+      return next(new AppError("This plant is unavailable!", 400));
+    const updatedAdoption = await Adoption.findByIdAndUpdate(
       req.params.adoptionId,
-      req.body
+      adoption
     );
 
     plant.status = "pending";
@@ -77,7 +83,7 @@ exports.editAdoption = async (req, res, next) => {
     res.status(200).json({
       status: "success",
       data: {
-        adoption,
+        updatedAdoption,
       },
     });
   } catch (err) {
