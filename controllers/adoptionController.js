@@ -70,8 +70,8 @@ exports.editAdoption = async (req, res, next) => {
     if (!plant) return next(new AppError("Plant not fount!", 404));
     console.log(plant.status);
 
-    if (plant.status !== "available")
-      return next(new AppError("This plant is unavailable!", 400));
+    if (plant.status !== "adopted")
+      return next(new AppError("This plant can't be released!", 400));
     const updatedAdoption = await Adoption.findByIdAndUpdate(
       req.params.adoptionId,
       adoption
