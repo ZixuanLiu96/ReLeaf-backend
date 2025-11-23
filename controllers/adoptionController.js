@@ -75,7 +75,6 @@ exports.editAdoption = async (req, res, next) => {
       status: "success",
       data: {
         adoption,
-        plant,
       },
     });
   } catch (err) {
