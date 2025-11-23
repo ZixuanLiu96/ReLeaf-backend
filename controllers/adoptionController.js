@@ -25,9 +25,10 @@ exports.createAdoptions = async (req, res, next) => {
 
     plant.status = "pending";
     plant.adoptedBy = userId;
-    // setTimeout(() => {
-    //   plant.status = "adopted";
-    // }, 10000);
+    setTimeout(() => {
+      plant.status = "adopted";
+      plant.save();
+    }, 10000);
     plant.save();
 
     res.status(201).json({
@@ -79,6 +80,12 @@ exports.editAdoption = async (req, res, next) => {
     );
 
     plant.status = "pending";
+
+    setTimeout(() => {
+      plant.status = "available";
+      plant.adoptedBy = null;
+      plant.save();
+    }, 10000);
     plant.save();
 
     res.status(200).json({
