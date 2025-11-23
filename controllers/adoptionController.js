@@ -74,8 +74,8 @@ exports.editAdoption = async (req, res, next) => {
       return next(new AppError("This plant can't be released!", 400));
     const updatedAdoption = await Adoption.findByIdAndUpdate(
       req.params.adoptionId,
-      adoption,
-      { new: true }
+      req.body,
+      { new: true, runValidators: true }
     );
 
     plant.status = "pending";
