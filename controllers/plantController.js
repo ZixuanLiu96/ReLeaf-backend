@@ -39,7 +39,9 @@ exports.createPlant = async (req, res, next) => {
 
 exports.getPlant = async (req, res, next) => {
   try {
-    const plant = await Plant.findById(req.params.plantId);
+    const plant = await Plant.findById(req.params.plantId).populate(
+      "adoptedBy"
+    );
     if (!plant) {
       throw new Error("No plant found with this ID");
     }
