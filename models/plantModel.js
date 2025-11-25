@@ -35,7 +35,10 @@ const plantSchema = new Schema({
     default: null,
   },
   careInstruction: String,
-  imageUrl: String,
+  imageUrl: {
+    type: Array,
+    required: [true, "A plant must have at least a picture!"],
+  },
 });
 
 const Plant = mongoose.model("Plant", plantSchema);
