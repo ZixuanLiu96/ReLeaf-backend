@@ -7,6 +7,7 @@ const userSchema = new Schema({
   username: {
     type: String,
     required: false,
+    unique: [true, "A username should be unique!"],
     sparse: true,
     default: "user",
     maxlength: [20, "A username shouldn't over 20 characters!"],
