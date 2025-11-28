@@ -35,7 +35,7 @@ const userSchema = new Schema({
     type: Date,
     default: Date.now(),
   },
-  profileUrrl: {
+  profileUrl: {
     type: String,
     default:
       "https://res.cloudinary.com/dprwwp1ku/image/upload/v1763160044/profile-bg_logwlv.png",
